@@ -248,6 +248,7 @@
 .student-info_title {
     align-items: center;
     display: flex;
+    justify-content: space-between;
 }
 
 .edit-icon {
@@ -322,4 +323,20 @@
 
 .main-part {
     margin-top: 14px;
+}
+
+.flex {
+    display: flex;
+}
+
+#btn-group {
+    display: flex;
+    margin-right: 160px;
+    cursor: pointer;
+}
+
+.info-content {
+    height: 32px;
+    width: 100%;
+    margin: 6px 0;
 }
