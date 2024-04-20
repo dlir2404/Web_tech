@@ -43,6 +43,10 @@ var editBtn = $("#editBtn")
 var submitBtn = $("#submit-btn")
 var cancelBtn = $("#cancel-btn")
 var resetBtn = $("#resetBtn")
+let changeImageContainer = $('#change-image-container')
+let image = $(".student-image")
+let defaultImage = getComputedStyle(image).backgroundImage
+
 
 var btnGroup = $("#btn-group")
 
@@ -58,7 +62,19 @@ editBtn.addEventListener("click", (e) => {
   cancelBtn = $("#cancel-btn")
   resetBtn = $("#resetBtn")
 
-  addEventListenerToBtns(submitBtn, cancelBtn, resetBtn)
+  changeImageContainer.innerHTML = `
+  <label id="change-image-btn" for="input-file">Thay đổi hình ảnh</label>
+  <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file">
+  `
+
+  let inputFile = $("#input-file")
+  let oldImage = getComputedStyle(image).backgroundImage
+  inputFile.onchange = function() {
+    const newImage = URL.createObjectURL(inputFile.files[0])
+    image.style.backgroundImage = `url(${newImage})`
+  }
+
+  addEventListenerToBtns(submitBtn, cancelBtn, resetBtn, image, oldImage)
 
   container.innerHTML = `
   <div class="special-text info-title"> 
@@ -178,7 +194,7 @@ editBtn.addEventListener("click", (e) => {
   `
 })
 
-function addEventListenerToBtns(submitBtn, cancelBtn, resetBtn) {
+function addEventListenerToBtns(submitBtn, cancelBtn, resetBtn, image, oldImage) {
   submitBtn.addEventListener("click", (e) => {
     e.preventDefault()
 
@@ -205,7 +221,7 @@ function addEventListenerToBtns(submitBtn, cancelBtn, resetBtn) {
     TTSV.studyStatus = studyStatus
     setData(TTSV)
     btnGroup.innerHTML = ''
-
+    changeImageContainer.innerHTML = ''
     console.log(">>> TTSV after click OK: ", TTSV)
   })
 
@@ -214,6 +230,8 @@ function addEventListenerToBtns(submitBtn, cancelBtn, resetBtn) {
 
     setData(TTSV)
     btnGroup.innerHTML = ''
+    image.style.backgroundImage = oldImage
+    changeImageContainer.innerHTML = ''
     console.log(">>> TTSV after click Cancel: ", TTSV)
   })
 
@@ -223,9 +241,8 @@ function addEventListenerToBtns(submitBtn, cancelBtn, resetBtn) {
     setData(TTSV_default)
     TTSV = { ...TTSV_default }
     btnGroup.innerHTML = ''
+    image.style.backgroundImage = defaultImage
+    changeImageContainer.innerHTML = ''
     console.log(">>> TTSV after click Reset: ", TTSV)
   })
 }
-
-
-
