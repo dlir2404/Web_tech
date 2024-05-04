@@ -173,6 +173,7 @@
     text-align: center;
     font-size: 16px;
     color: #8c1515;
+    margin-bottom: 50px;
 }
 
 .line-info {
@@ -351,4 +352,87 @@
     background: #0794e0;
     padding: 6px;
     border-radius: 6px;
+}
+
+.info-container {
+    width: 70%;
+    margin: auto;
+    border: solid 2px #d4854c;
+    display: block;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.info-container-title {
+    width: 94%;
+    height: 20px;
+    background-color: white;
+    position:absolute;
+    top: -20px;
+    left: 3%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-group {
+    display: flex;
+    min-width: 310px;
+    justify-content: space-between;
+} 
+
+.info-title-text {
+    color: #5672b4;
+    font-weight: 700;
+}
+
+.info-container .info-content-main {
+    width: 90%;
+    margin-top: 30px;
+    margin-left: 60px;
+    padding-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height: 30px;
+}
+
+.info-item-title {
+    flex: 2
+}
+
+.info-item-input {
+    flex: 1;
+}
+
+.info-item input {
+    margin-right: 20px;
+}
+
+.info-item-action {
+    display: flex;
+    flex: 3;
+}
+
+.delete-trash-btn {
+    background: url('../images/garbage-can.png') no-repeat;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    padding-bottom: 100%;
+    margin-right: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.add-info-btn,
+.add-group-btn {
+    cursor: pointer;
+    -webkit-touch-callout: none; /* Safari */
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
 }
