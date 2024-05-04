@@ -360,7 +360,7 @@
     border: solid 2px #d4854c;
     display: block;
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .info-container-title {
@@ -465,4 +465,93 @@
 
 .flex-1 {
     flex: 1;
+}
+
+.delete-trash-btn-container {
+    background: url('../images/garbage-can.png') no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    transform: translateY(-100%) translateX(100%);
+}
+
+.prompt-layer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+.prompt {
+    background-color: white;
+    width: 500px;
+    height: 150px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-135%);
+    border-radius: 8px;
+    padding: 20px 24px;
+    color: rgba(0, 0, 0, 0.88);
+}
+
+.prompt-title {
+    font-weight: 600;
+    font-size: 18px;
+    font-family: 'Segoe UI', sans-serif;
+    margin-bottom: 4px;
+}
+
+.promt-group-btn {
+    display: flex;
+    margin-top: 12px;
+    justify-content: space-between;
+    margin-left: 325px;
+}
+
+.cancel-btn {
+    padding: 4px 15px;
+    border: solid 1px #d9d9d9;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* Safari */
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+.cancel-btn:hover {
+    color: #4096ff;
+    border-color: #4096ff;
+}
+
+.ok-btn {
+    padding: 5px 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    height: 30px;
+    background-color: #1677ff;
+    width: 56px;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* Safari */
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
+
+.ok-btn:hover {
+    background-color: #4096ff;
 }

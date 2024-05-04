@@ -56,6 +56,7 @@ const addGroupBtnsFuntion = () => {
         </div>
     </div>
   </div>
+  <div class="delete-trash-btn-container"></div>
   `
   content.appendChild(newGroup)
 
@@ -116,12 +117,50 @@ const addItemTitleFunction = function() {
   addTitleFunction(this, 'item-title-text-input', 'info-item-title', 'flex-2', false)
 }
 
+const addDeleteGroupBtnFunction = function() {
+  const promptLayer = document.createElement('div')
+  promptLayer.classList.add('prompt-layer')
+
+  const prompt = document.createElement('div')
+  prompt.classList.add('prompt')
+  prompt.innerHTML = `
+    <div class="prompt-title">Bạn có chắc muốn xóa nhóm thông tin này? </div>
+    <div>
+        <p>Họ tên: Vũ Đình Linh</p>
+        <p>MSSV: 20215415</p>
+    </div>
+    <div class="promt-group-btn">
+        <div class="cancel-btn">Hủy</div>
+        <div class="ok-btn">Có</div>
+    </div>
+  `
+  const body = $('body')
+  body.appendChild(promptLayer)
+  body.appendChild(prompt)
+
+  const cancelBtn = $('.cancel-btn')
+  const okBtn = $('.ok-btn')
+
+  cancelBtn.addEventListener('click', function() {
+    promptLayer.remove()
+    prompt.remove()
+  })
+
+  const _this = this
+  okBtn.addEventListener('click', function() {
+    promptLayer.remove()
+    prompt.remove()
+    _this.closest('.info-container').remove()
+  })
+}
+
 const addEventlistenerToElement = () => {
   const addGroupBtns = $$('.add-group-btn')
   const addInfoItems = $$('.add-info-btn')
   const deleteItemBtns = $$('.delete-trash-btn')
   const groupTitles = $$('.info-title-text')
   const itemTitles = $$('.info-item-title')
+  const deleteGroupBtns = $$('.delete-trash-btn-container')
 
   for (const btn of addGroupBtns) {
     btn.removeEventListener('click', addGroupBtnsFuntion)
@@ -146,6 +185,12 @@ const addEventlistenerToElement = () => {
 
   for (const title of itemTitles) {
     title.addEventListener('dblclick', addItemTitleFunction)
+  }
+
+  if (deleteGroupBtns.length > 0) {
+    for (btn of deleteGroupBtns) {
+      btn.addEventListener('click', addDeleteGroupBtnFunction)
+    }
   }
 }
 
