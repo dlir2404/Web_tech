@@ -383,6 +383,7 @@
 .info-title-text {
     color: #5672b4;
     font-weight: 700;
+    flex: 1;
 }
 
 .info-container .info-content-main {
@@ -435,4 +436,33 @@
     -moz-user-select: none; /* Firefox 2+ */
     -ms-user-select: none; /* IE 10+ */
     user-select: none; /* Standard syntax */
+}
+
+.hidden {
+    display: none;
+}
+
+.info-title-text-input {
+    height: 20px;
+    width: 245px;
+    border: none;
+    outline: none;
+    color: #5672b4;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.item-title-text-input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-1 {
+    flex: 1;
 }

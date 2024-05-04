@@ -6,6 +6,14 @@ const $$ = (querySelector) => {
   return document.querySelectorAll(querySelector)
 }
 
+const SUFFIX = '_20215415'
+const removeSuffix = (string) => {
+  return string.replace(SUFFIX, '')
+}
+const addSuffix = (string) => {
+  return string + SUFFIX
+}
+
 const content = $('.content')
 
 const addGroupBtnsFuntion = () => {
@@ -51,7 +59,7 @@ const addGroupBtnsFuntion = () => {
   `
   content.appendChild(newGroup)
 
-  addEventlistenerToBtn()
+  addEventlistenerToElement()
 }
 
 const addInfoItemsFuntion = function() {
@@ -69,13 +77,51 @@ const addInfoItemsFuntion = function() {
   `
   parenContainerContent.appendChild(newItem)
 
-  addEventlistenerToBtn()
+  addEventlistenerToElement()
 }
 
-const addEventlistenerToBtn = () => {
+const addTitleFunction = function(_this, inputElementClass, textElementClass, parentClass, isAddSuffix) {
+  var inputElement = document.createElement('input');
+  inputElement.value = isAddSuffix ? removeSuffix(_this.innerText) : _this.innerText;
+  inputElement.classList.add(inputElementClass)
+  
+  var inputContainer = document.createElement('div')
+  inputContainer.classList.add(parentClass)
+  inputContainer.appendChild(inputElement)
+  _this.parentNode.replaceChild(inputContainer, _this);
+  
+  inputElement.focus();
+  
+  inputElement.addEventListener('blur', function() {
+      var newTextElement = document.createElement('div');
+      newTextElement.classList.add(textElementClass)
+      newTextElement.textContent = isAddSuffix ? addSuffix(this.value) : this.value;
+      
+      this.parentNode.parentNode.replaceChild(newTextElement, this.parentNode);
+      addEventlistenerToElement()
+  });
+
+  inputElement.addEventListener("keypress", function(event) {
+    if (event.keyCode === 13) {
+      this.blur()
+    }
+});
+}
+
+const addGroupTitleFunction = function() {
+  addTitleFunction(this, 'info-title-text-input', 'info-title-text', 'flex-1', true)
+}
+
+const addItemTitleFunction = function() {
+  addTitleFunction(this, 'item-title-text-input', 'info-item-title', 'flex-2', false)
+}
+
+const addEventlistenerToElement = () => {
   const addGroupBtns = $$('.add-group-btn')
   const addInfoItems = $$('.add-info-btn')
   const deleteItemBtns = $$('.delete-trash-btn')
+  const groupTitles = $$('.info-title-text')
+  const itemTitles = $$('.info-item-title')
 
   for (const btn of addGroupBtns) {
     btn.removeEventListener('click', addGroupBtnsFuntion)
@@ -93,7 +139,15 @@ const addEventlistenerToBtn = () => {
       parentItem.remove()
     })
   }
+
+  for (const title of groupTitles) {
+    title.addEventListener('dblclick', addGroupTitleFunction)
+  }
+
+  for (const title of itemTitles) {
+    title.addEventListener('dblclick', addItemTitleFunction)
+  }
 }
 
-addEventlistenerToBtn()
+addEventlistenerToElement()
 
