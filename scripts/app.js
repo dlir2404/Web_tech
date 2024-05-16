@@ -1,6 +1,6 @@
-const $ = (querySelector) => {
-  return document.querySelector(querySelector)
-}
+// const $ = (querySelector) => {
+//   return document.querySelector(querySelector)
+// }
 
 const $$ = (querySelector) => {
   return document.querySelectorAll(querySelector)
@@ -79,7 +79,7 @@ const addGroupBtnsFuntion = () => {
   </div>
   <div class="delete-trash-btn-container"></div>
   `
-  content.appendChild(newGroup)
+  content.append(newGroup)
 
   addEventlistenerToElement()
 }
@@ -102,7 +102,7 @@ const addInfoItemsFuntion = function () {
         <div class="delete-trash-btn"></div>
     </div>
   `
-  parenContainerContent.appendChild(newItem)
+  parenContainerContent.append(newItem)
 
   addEventlistenerToElement()
 }
@@ -114,7 +114,7 @@ const addTitleFunction = function (_this, inputElementClass, textElementClass, p
 
   var inputContainer = document.createElement('div')
   inputContainer.classList.add(parentClass)
-  inputContainer.appendChild(inputElement)
+  inputContainer.append(inputElement)
   _this.parentNode.replaceChild(inputContainer, _this);
 
   inputElement.focus();
@@ -161,19 +161,19 @@ const addDeleteGroupBtnFunction = function () {
     </div>
   `
   const body = $('body')
-  body.appendChild(promptLayer)
-  body.appendChild(prompt)
+  body.append(promptLayer)
+  body.append(prompt)
 
   const cancelBtn = $('.cancel-btn')
   const okBtn = $('.ok-btn')
 
-  cancelBtn.addEventListener('click', function () {
+  cancelBtn.on('click', function () {
     promptLayer.remove()
     prompt.remove()
   })
 
   const _this = this
-  okBtn.addEventListener('click', function () {
+  okBtn.on('click', function () {
     promptLayer.remove()
     prompt.remove()
     _this.closest('.info-container').remove()
@@ -266,3 +266,33 @@ const addEventlistenerToElement = () => {
 
 addEventlistenerToElement()
 
+//pdf
+$(document).ready(function() {
+  $('#exportPDF').click(function() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      html2canvas(document.querySelector("#content")).then(canvas => {
+          const imgData = canvas.toDataURL("image/png");
+          const imgWidth = 190;
+          const pageHeight = 295;
+          const imgHeight = canvas.height * imgWidth / canvas.width;
+          let heightLeft = imgHeight;
+          let position = 0;
+
+          doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+
+          while (heightLeft >= 0) {
+              position = heightLeft - imgHeight;
+              doc.addPage();
+              doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+              heightLeft -= pageHeight;
+          }
+
+          const pdfOutput = doc.output('blob');
+          const pdfURL = URL.createObjectURL(pdfOutput);
+          window.open(pdfURL, '_blank');
+      });
+  });
+});

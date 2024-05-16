@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dinh Linh's Profile</title>
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
+
 <body>
     <div class="header">
         <div class="header-top">
@@ -154,9 +156,10 @@
                 </div>
             </div>
         </div>
-        <div class="content">
+        <div id='content' class="content">
             <div class="personal-info">
                 <h3 class="title-time">THÔNG TIN CÁ NHÂN</h3>
+                <button id="exportPDF"></button>
             </div>
             <div class="info-container">
                 <div class="info-container-title">
@@ -165,50 +168,14 @@
                     </div>
                     <div class="btn-group">
                         <div class="add-info-btn">
-                            < Add Info Item >
+                            < Add Info Item>
                         </div>
                         <div class="add-group-btn">
-                            < Add Group Item >
+                            < Add Group Item>
                         </div>
                     </div>
                 </div>
                 <div class="info-content-main">
-                    <div class="info-item">
-                        <div class="info-item-title">Họ và tên</div>
-                        <div class="info-item-action">
-                            <input class="info-item-input" type="text">
-                            <select class="input-type" name="input-type" id="">
-                                <option value="Text">Text</option>
-                                <option value="Radio">Radio</option>
-                                <option value="Checkbox">Checkbox</option>
-                            </select>
-                            <div class="delete-trash-btn"></div>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-item-title">Mã số sinh viên</div>
-                        <div class="info-item-action">
-                            <input class="info-item-input" type="text">
-                            <select class="input-type" name="input-type" id="">
-                                <option value="Text">Text</option>
-                                <option value="Radio">Radio</option>
-                                <option value="Checkbox">Checkbox</option>
-                            </select>
-                            <div class="delete-trash-btn"></div>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-item-title">Chương trình đào tạo</div>
-                        <div class="info-item-action">
-                            <input class="info-item-input" type="text">
-                            <select class="input-type" name="input-type" id="">
-                                <option value="Text">Text</option>
-                                <option value="Radio">Radio</option>
-                                <option value="Checkbox">Checkbox</option>
-                            </select>
-                            <div class="delete-trash-btn"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -223,6 +190,10 @@
             <p>Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội</p>
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="./scripts/app.js"></script>
 </body>
+
 </html>

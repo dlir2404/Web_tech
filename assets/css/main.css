@@ -320,7 +320,8 @@
     font-family: 'Times New Roman', serif;
     font-size: 14px;
     font-weight: bold;
-    color: red
+    color: red;
+    display: inline-block;
 }
 
 .main-part {
@@ -557,4 +558,12 @@
 .input-type {
     height: 30px;
     margin-left: 20px;
+}
+
+#exportPDF {
+    background-image: url('../images/pdf-icon.png');
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    border: none;
 }
