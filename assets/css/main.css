@@ -397,7 +397,6 @@
     display: flex;
     margin-top: 4px;
     margin-bottom: 4px;
-    height: 30px;
 }
 
 .info-item-title {
@@ -422,7 +421,6 @@
     background-size: contain;
     width: 20px;
     height: 20px;
-    padding-bottom: 100%;
     margin-right: 20px;
     margin-left: 10px;
     cursor: pointer;
@@ -554,4 +552,9 @@
 
 .ok-btn:hover {
     background-color: #4096ff;
+}
+
+.input-type {
+    height: 30px;
+    margin-left: 20px;
 }

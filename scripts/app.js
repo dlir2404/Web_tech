@@ -14,6 +14,12 @@ const addSuffix = (string) => {
   return string + SUFFIX
 }
 
+const INPUT_TYPE = {
+  RADIO: 'Radio',
+  CHECKBOX: 'Checkbox',
+  TEXT: 'Text'
+}
+
 const content = $('.content')
 
 const addGroupBtnsFuntion = () => {
@@ -38,6 +44,11 @@ const addGroupBtnsFuntion = () => {
         <div class="info-item-title">Item Info Name</div>
         <div class="info-item-action">
             <input class="info-item-input" type="text">
+            <select class="input-type" name="input-type" id="">
+              <option value="Text">Text</option>
+              <option value="Radio">Radio</option>
+              <option value="Checkbox">Checkbox</option>
+            </select>
             <div class="delete-trash-btn"></div>
         </div>
     </div>
@@ -45,6 +56,11 @@ const addGroupBtnsFuntion = () => {
         <div class="info-item-title">Item Info Name</div>
         <div class="info-item-action">
             <input class="info-item-input" type="text">
+            <select class="input-type" name="input-type" id="">
+              <option value="Text">Text</option>
+              <option value="Radio">Radio</option>
+              <option value="Checkbox">Checkbox</option>
+            </select>
             <div class="delete-trash-btn"></div>
         </div>
     </div>
@@ -52,6 +68,11 @@ const addGroupBtnsFuntion = () => {
         <div class="info-item-title">Item Info Name</div>
         <div class="info-item-action">
             <input class="info-item-input" type="text">
+            <select class="input-type" name="input-type" id="">
+              <option value="Text">Text</option>
+              <option value="Radio">Radio</option>
+              <option value="Checkbox">Checkbox</option>
+            </select>
             <div class="delete-trash-btn"></div>
         </div>
     </div>
@@ -63,7 +84,7 @@ const addGroupBtnsFuntion = () => {
   addEventlistenerToElement()
 }
 
-const addInfoItemsFuntion = function() {
+const addInfoItemsFuntion = function () {
   const parentContainer = this.closest('.info-container')
   const parenContainerContent = parentContainer.querySelector('.info-content-main')
   const newItem = document.createElement('div')
@@ -73,6 +94,11 @@ const addInfoItemsFuntion = function() {
     <div class="info-item-title">Item Info Name</div>
     <div class="info-item-action">
         <input class="info-item-input" type="text">
+        <select class="input-type" name="input-type" id="">
+          <option value="Text">Text</option>
+          <option value="Radio">Radio</option>
+          <option value="Checkbox">Checkbox</option>
+        </select>
         <div class="delete-trash-btn"></div>
     </div>
   `
@@ -81,43 +107,43 @@ const addInfoItemsFuntion = function() {
   addEventlistenerToElement()
 }
 
-const addTitleFunction = function(_this, inputElementClass, textElementClass, parentClass, isAddSuffix) {
+const addTitleFunction = function (_this, inputElementClass, textElementClass, parentClass, isAddSuffix) {
   var inputElement = document.createElement('input');
   inputElement.value = isAddSuffix ? removeSuffix(_this.innerText) : _this.innerText;
   inputElement.classList.add(inputElementClass)
-  
+
   var inputContainer = document.createElement('div')
   inputContainer.classList.add(parentClass)
   inputContainer.appendChild(inputElement)
   _this.parentNode.replaceChild(inputContainer, _this);
-  
+
   inputElement.focus();
-  
-  inputElement.addEventListener('blur', function() {
-      var newTextElement = document.createElement('div');
-      newTextElement.classList.add(textElementClass)
-      newTextElement.textContent = isAddSuffix ? addSuffix(this.value) : this.value;
-      
-      this.parentNode.parentNode.replaceChild(newTextElement, this.parentNode);
-      addEventlistenerToElement()
+
+  inputElement.addEventListener('blur', function () {
+    var newTextElement = document.createElement('div');
+    newTextElement.classList.add(textElementClass)
+    newTextElement.textContent = isAddSuffix ? addSuffix(this.value) : this.value;
+
+    this.parentNode.parentNode.replaceChild(newTextElement, this.parentNode);
+    addEventlistenerToElement()
   });
 
-  inputElement.addEventListener("keypress", function(event) {
+  inputElement.addEventListener("keypress", function (event) {
     if (event.keyCode === 13) {
       this.blur()
     }
-});
+  });
 }
 
-const addGroupTitleFunction = function() {
+const addGroupTitleFunction = function () {
   addTitleFunction(this, 'info-title-text-input', 'info-title-text', 'flex-1', true)
 }
 
-const addItemTitleFunction = function() {
+const addItemTitleFunction = function () {
   addTitleFunction(this, 'item-title-text-input', 'info-item-title', 'flex-2', false)
 }
 
-const addDeleteGroupBtnFunction = function() {
+const addDeleteGroupBtnFunction = function () {
   const promptLayer = document.createElement('div')
   promptLayer.classList.add('prompt-layer')
 
@@ -141,17 +167,54 @@ const addDeleteGroupBtnFunction = function() {
   const cancelBtn = $('.cancel-btn')
   const okBtn = $('.ok-btn')
 
-  cancelBtn.addEventListener('click', function() {
+  cancelBtn.addEventListener('click', function () {
     promptLayer.remove()
     prompt.remove()
   })
 
   const _this = this
-  okBtn.addEventListener('click', function() {
+  okBtn.addEventListener('click', function () {
     promptLayer.remove()
     prompt.remove()
     _this.closest('.info-container').remove()
   })
+}
+
+const addChangerInputTypeFunction = function () {
+  switch (this.value) {
+    case INPUT_TYPE.RADIO:
+      var newElement = document.createElement('div')
+      newElement.classList.add('info-item-input')
+      newElement.innerHTML = `
+      <input type="radio" id="first-choice" name="choice" value="Lựa chọn 1">
+      <input type='text class='editable-label' for="first-choice" value='Lựa chọn 1'></input><br>
+      <input type="radio" id="second-choice" name="choice" value="Lựa chọn 2">
+      <input type='text class='editable-label' for="second-choice" value='Lựa chọn 2'></input><br>
+      <input type="radio" id="third-choice" name="choice" value="Lựa chọn 3">
+      <input type='text class='editable-label' for="third-choice" value='Lựa chọn 3'></input>
+      `
+      this.parentNode.replaceChild(newElement, this.parentNode.querySelector('.info-item-input'))
+      break;
+    case INPUT_TYPE.CHECKBOX:
+      var newElement = document.createElement('div')
+      newElement.classList.add('info-item-input')
+      newElement.innerHTML = `
+      <input type="checkbox" id="first-choice" name="choice" value="Lựa chọn 1">
+      <input type='text class='editable-label' for="first-choice" value='Lựa chọn 1'></input><br>
+      <input type="checkbox" id="second-choice" name="choice" value="Lựa chọn 2">
+      <input type='text class='editable-label' for="second-choice" value='Lựa chọn 2'></input><br>
+      <input type="checkbox" id="third-choice" name="choice" value="Lựa chọn 3">
+      <input type='text class='editable-label' for="third-choice" value='Lựa chọn 3'></input>
+      `
+      this.parentNode.replaceChild(newElement, this.parentNode.querySelector('.info-item-input'))
+      break;
+    case INPUT_TYPE.TEXT:
+    default:
+      var newElement = document.createElement('input')
+      newElement.type = 'text';
+      newElement.classList.add('info-item-input')
+      this.parentNode.replaceChild(newElement, this.parentNode.querySelector('.info-item-input'))
+  }
 }
 
 const addEventlistenerToElement = () => {
@@ -161,6 +224,7 @@ const addEventlistenerToElement = () => {
   const groupTitles = $$('.info-title-text')
   const itemTitles = $$('.info-item-title')
   const deleteGroupBtns = $$('.delete-trash-btn-container')
+  const inputTypeChangers = $$('.input-type')
 
   for (const btn of addGroupBtns) {
     btn.removeEventListener('click', addGroupBtnsFuntion)
@@ -185,6 +249,12 @@ const addEventlistenerToElement = () => {
 
   for (const title of itemTitles) {
     title.addEventListener('dblclick', addItemTitleFunction)
+  }
+
+  if (inputTypeChangers.length > 0) {
+    for (changer of inputTypeChangers) {
+      changer.addEventListener('change', addChangerInputTypeFunction)
+    }
   }
 
   if (deleteGroupBtns.length > 0) {
